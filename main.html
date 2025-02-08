@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Method</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <main class="flex justify-center items-center">
+      <div class="mockup-phone">
+        <div class="camera"></div>
+        <div class="display">
+          <div class="artboard artboard-demo phone-3">
+            <div class="stat place-items-center">
+              <div class="stat-title">Users</div>
+              <div id="balenc" class="stat-value text-5xl">4500</div>
+              <div class="stat-desc text-secondary">↗︎ 40 (2%)</div>
+            </div>
+
+            <div>
+              <button id="show-add-money-form" class="btn btn-outline btn-primary">Add Money</button>
+              <button id="show-cash-out-form" class="btn btn-outline btn-secondary">Cash Out</button>
+            </div>
+
+            <!-- add money form start -->
+
+              <form id="add-money-form" class="hidden w-10/12">
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text">Add Money</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="add-money"
+                    placeholder="Enter your amount"
+                    class="input input-bordered"
+                    required
+                  />
+                </div>
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text">Enter your pin</span>
+                  </label>
+                  <input
+                    type="password"
+                    id="pin"
+                    placeholder="PIN"
+                    class="input input-bordered"
+                  />
+                  <label class="label">
+                    <a href="#" class="label-text-alt link link-hover"
+                      >Forgot password?</a
+                    >
+                  </label>
+                </div>
+                <div class="form-control mt-6" id="send-money">
+                  <button class="btn btn-primary">Send Money</button>
+                </div>
+              </form>
+            <!-- add money form end -->
+
+            <!-- cash out form start -->
+
+              <form id="cash-out-form" class="w-10/12">
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text">Cash out</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="cash-out-amount"
+                    placeholder="Enter your amount"
+                    class="input input-bordered"
+                    required
+                  />
+                </div>
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text">Enter your pin</span>
+                  </label>
+                  <input
+                    type="password"
+                    id="cash-out-pin"
+                    placeholder="PIN"
+                    class="input input-bordered"
+                  />
+                  <label class="label">
+                    <a href="#" class="label-text-alt link link-hover"
+                      >Forgot password?</a
+                    >
+                  </label>
+                </div>
+                <div class="form-control mt-6" id="cash-out">
+                  <button class="btn btn-primary">Cash Out</button>
+                </div>
+              </form>
+            <!-- cash out form end -->
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      // add money funstion
+      document
+        .getElementById("send-money")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          const add_money = document.getElementById("add-money").value;
+          const add_money_pin = document.getElementById("pin").value;
+          const balence = document.getElementById("balenc").innerText;
+
+          const beforeBalence = parseFloat(balence);
+          const updateAddMoney = parseFloat(add_money);
+
+          if (add_money_pin === "1234") {
+            const newBalence = beforeBalence + updateAddMoney;
+            const afterBalence = (document.getElementById("balenc").innerText =
+              newBalence);
+          } else {
+            alert("incorrect your pi please try againe...");
+          }
+        });
+
+
+
+
+
+      //   cash out funstion
+
+      document.getElementById("cash-out").addEventListener("click", function(e){
+            e.preventDefault();
+            const cash_out = document.getElementById("cash-out-amount").value;
+            const update_cash_out = parseFloat(cash_out);
+            const balence = document.getElementById("balenc").innerText;
+            const update_balence = parseFloat(balence);
+
+            const cash_out_pin = document.getElementById("cash-out-pin").value;
+
+            if(cash_out_pin === "1234"){
+                  const currentBalence = update_balence - update_cash_out;
+
+                  const newBalence = document.getElementById("balenc").innerText = currentBalence; 
+            }else{
+                  alert("you are uncorrect password please try again....")
+            }
+            
+      })
+    </script>
+    <script src="/future.js"></script>
+  </body>
+</html>
